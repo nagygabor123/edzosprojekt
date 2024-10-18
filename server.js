@@ -27,7 +27,63 @@ const coaches = [
     images: ["teszt1.jpg", "teszt2.jpg", "teszt3.jpg"],
     info: "Mark Taylor is a strength and conditioning coach with expertise in weightlifting.",
     phone: "+192837465"
-  }
+  },
+  {
+    id: 4,
+    name: "titok1",
+    images: ["teszt1.jpg", "teszt2.jpg", "teszt3.jpg"],
+    info: "Mark Taylor is a strength and conditioning coach with expertise in weightlifting.",
+    phone: "+192837465"
+  },
+  {
+    id: 5,
+    name: "Mark Taylor",
+    images: ["teszt1.jpg", "teszt2.jpg", "teszt3.jpg"],
+    info: "Mark Taylor is a strength and conditioning coach with expertise in weightlifting.",
+    phone: "+192837465"
+  },
+  {
+    id: 6,
+    name: "Mark Taylor",
+    images: ["teszt1.jpg", "teszt2.jpg", "teszt3.jpg"],
+    info: "Mark Taylor is a strength and conditioning coach with expertise in weightlifting.",
+    phone: "+192837465"
+  },
+  {
+    id: 7,
+    name: "Mark Taylor",
+    images: ["teszt1.jpg", "teszt2.jpg", "teszt3.jpg"],
+    info: "Mark Taylor is a strength and conditioning coach with expertise in weightlifting.",
+    phone: "+192837465"
+  },
+  {
+    id: 8,
+    name: "Mark Taylor",
+    images: ["teszt1.jpg", "teszt2.jpg", "teszt3.jpg"],
+    info: "Mark Taylor is a strength and conditioning coach with expertise in weightlifting.",
+    phone: "+192837465"
+  },
+  {
+    id: 9,
+    name: "Mark Taylor",
+    images: ["teszt1.jpg", "teszt2.jpg", "teszt3.jpg"],
+    info: "Mark Taylor is a strength and conditioning coach with expertise in weightlifting.",
+    phone: "+192837465"
+  },
+  {
+    id: 10,
+    name: "Mark Taylor",
+    images: ["teszt1.jpg", "teszt2.jpg", "teszt3.jpg"],
+    info: "Mark Taylor is a strength and conditioning coach with expertise in weightlifting.",
+    phone: "+192837465"
+  },
+  {
+    id: 11,
+    name: "Mark Taylor",
+    images: ["teszt1.jpg", "teszt2.jpg", "teszt3.jpg"],
+    info: "Mark Taylor is a strength and conditioning coach with expertise in weightlifting.",
+    phone: "+192837465"
+  },
 ];
 
 // API route to get coach details by ID

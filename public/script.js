@@ -11,7 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const coaches = [
       { id: 1, name: "John Smith" },
       { id: 2, name: "Jane Doe" },
-      { id: 3, name: "Mark Taylor" }
+      { id: 3, name: "Mark Taylor" },
+      { id: 4, name: "Mark Taylor" },
+      { id: 5, name: "Mark Taylor" },
+      { id: 6, name: "Mark Taylor" },
+      { id: 7, name: "Mark Taylor" },
+      { id: 8, name: "Mark Taylor" },
+      { id: 9, name: "Mark Taylor" },
+      { id: 10, name: "Mark Taylor" },
+      { id: 11, name: "Mark Taylor" }
     ];
   
     // Generate coach selection list
