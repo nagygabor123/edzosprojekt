@@ -1,28 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coaches</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edzésterv Vásárlás</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-  <h1>Select a Coach</h1>
-  <div id="coaches-container">
-    <!-- Coach list will be inserted here by JavaScript -->
-  </div>
+    <header>
+        <h1>Edzésterv Vásárlás</h1>
+    </header>
 
-  <!-- Modal for coach details -->
-  <div id="coach-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2 id="coach-name"></h2>
-      <div id="coach-images"></div>
-      <p id="coach-info"></p>
-      <p><strong>Phone: </strong><span id="coach-phone"></span></p>
-    </div>
-  </div>
+    <main>
+        <section id="plans">
+            <h2>Elérhető Edzéstervek</h2>
+            <a href="edzok.html"><h3>edzok</h3></a>
+            <div class="plan">
+                <h3>Fogyás Program</h3>
+                <p>Ez a program segít a fogyásban és az állóképesség javításában.</p>
+                <button id="checkout-button-fogyas">Megvásárlás</button>
+            </div>
+            <div class="plan">
+                <h3>Izomépítő Program</h3>
+                <p>Fokozd az izmaid méretét és erejét ezzel a programmal.</p>
+                <button id="checkout-button-izomepito">Megvásárlás</button>
+            </div>
+            <div class="plan">
+                <h3>Állóképesség Fejlesztő Program</h3>
+                <p>Növeld az állóképességedet ezzel az intenzív programmal.</p>
+                <button id="checkout-button-allokepesseg">Megvásárlás</button>
+            </div>
+        </section>
+    </main>
 
-  <script src="script.js"></script>
+    <footer>
+        <p>&copy; 2024 Edzésterv Vásárlás. Minden jog fenntartva.</p>
+    </footer>
+
+    <script src="./js/app.js"></script>
 </body>
 </html>
