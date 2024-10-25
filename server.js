@@ -81,7 +81,7 @@ const coaches = [
   {
     id: 1,
     name: "John Smith",
-    images: ["./img/teszt1.jpg", "./img/teszt2.jpg", "./img/teszt3.jpg"],
+    images: ["./img/teszt1.jpg", "./img/teszt2.jpg"],
     info: "John Smith is a certified personal trainer with 10 years of experience in fitness.",
     phone: "+123456789"
   },
@@ -147,14 +147,7 @@ const coaches = [
     images: ["./img/teszt1.jpg", "./img/teszt2.jpg", "./img/teszt3.jpg"],
     info: "Mark Taylor is a strength and conditioning coach with expertise in weightlifting.",
     phone: "+192837465"
-  },
-  {
-    id: 11,
-    name: "Mark Taylor",
-    images: ["./img/teszt1.jpg", "./img/teszt2.jpg", "./img/teszt3.jpg"],
-    info: "Mark Taylor is a strength and conditioning coach with expertise in weightlifting.",
-    phone: "+192837465"
-  },
+  }
 ];
 
 // API route to get coach details by ID
