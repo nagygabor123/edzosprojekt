@@ -1,16 +1,35 @@
-const stripe = Stripe('pk_test_51PtWWNRsbWzuHhS7ydYmijEwc2NMkPOnnwfBrfgWlEpQ3suR0KazdhiwBred2okjvghJXqESoeKORwyrlfTlngom00gP3EZfWZ'); // Add your Stripe Publishable Key here
+const stripe = Stripe('pk_test_51PtWWNRsbWzuHhS7ydYmijEwc2NMkPOnnwfBrfgWlEpQ3suR0KazdhiwBred2okjvghJXqESoeKORwyrlfTlngom00gP3EZfWZ');
 
-document.getElementById('checkout-button-fogyas').addEventListener('click', () => {
-    createCheckoutSession('Fogyás Program');
+let selectedPlan = null; // Globális változó a kiválasztott tervhez
+
+function openModal(title, description, planId) {
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-description').textContent = description;
+    selectedPlan = planId; // A kiválasztott terv azonosítója
+
+    document.getElementById('modal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+}
+
+document.getElementById('modal-purchase-button').addEventListener('click', () => {
+    if (selectedPlan) {
+        handlePurchaseClick(selectedPlan);
+    }
+    closeModal(); // Modal bezárása vásárlás után
 });
 
-document.getElementById('checkout-button-izomepito').addEventListener('click', () => {
-    createCheckoutSession('Izomépítő Program');
-});
-
-document.getElementById('checkout-button-allokepesseg').addEventListener('click', () => {
-    createCheckoutSession('Állóképesség Fejlesztő Program');
-});
+function handlePurchaseClick(planId) {
+    if (planId === 'checkout-button-fogyas') {
+        createCheckoutSession('Fogyás Program');
+    } else if (planId === 'checkout-button-izomepito') {
+        createCheckoutSession('Izomépítő Program');
+    } else if (planId === 'checkout-button-allokepesseg') {
+        createCheckoutSession('Állóképesség Fejlesztő Program');
+    }
+}
 
 function createCheckoutSession(plan) {
     fetch('/create-checkout-session', {

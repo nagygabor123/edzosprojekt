@@ -11,27 +11,39 @@
     <header>
         <h1>Edzésterv Vásárlás</h1>
     </header>
+    
+    <!-- Navigációs sáv -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="about.html">Rólunk</a></li>
+            <li><a class="active" href="#home">Programok</a></li>
+            <li><a href="edzok.html">Edzők</a></li>   
+        </ul>
+    </nav>
 
     <main>
+        <h2>Elérhető Edzéstervek</h2>
         <section id="plans">
-            <h2>Elérhető Edzéstervek</h2>
-            <a href="edzok.html"><h3>edzok</h3></a>
-            <div class="plan">
+            <div class="plan" onclick="openModal('Fogyás Program', 'Ez a program segít a fogyásban és az állóképesség javításában.', 'checkout-button-fogyas')">
                 <h3>Fogyás Program</h3>
-                <p>Ez a program segít a fogyásban és az állóképesség javításában.</p>
-                <button id="checkout-button-fogyas">Megvásárlás</button>
             </div>
-            <div class="plan">
+            <div class="plan" onclick="openModal('Izomépítő Program', 'Fokozd az izmaid méretét és erejét ezzel a programmal.', 'checkout-button-izomepito')">
                 <h3>Izomépítő Program</h3>
-                <p>Fokozd az izmaid méretét és erejét ezzel a programmal.</p>
-                <button id="checkout-button-izomepito">Megvásárlás</button>
             </div>
-            <div class="plan">
+            <div class="plan" onclick="openModal('Állóképesség Fejlesztő Program', 'Növeld az állóképességedet ezzel az intenzív programmal.', 'checkout-button-allokepesseg')">
                 <h3>Állóképesség Fejlesztő Program</h3>
-                <p>Növeld az állóképességedet ezzel az intenzív programmal.</p>
-                <button id="checkout-button-allokepesseg">Megvásárlás</button>
             </div>
         </section>
+
+        <!-- Felugró ablak -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3 id="modal-title"></h3>
+                <p id="modal-description"></p>
+                <button id="modal-purchase-button">Megvásárlás</button>
+            </div>
+        </div>
     </main>
 
     <footer>
