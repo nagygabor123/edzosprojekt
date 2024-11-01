@@ -6,6 +6,7 @@
   text-decoration: none;
   list-style: none;
   box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
@@ -117,7 +118,6 @@ a:hover {
   }
 }
 
-
 #plans {
   display: flex;
   flex-wrap: wrap; /* Engedélyezi a tördelést több sorba */
@@ -138,20 +138,23 @@ a:hover {
 }
 
 .plan:hover {
-  background-color: #e0e0e0;
+  background-color: #77bcc4;
+  color: white;
 }
 
 button {
-  background-color: #6DBE45;
-  border: none;
-  padding: 10px 20px;
-  color: white;
-  border-radius: 5px;
+  background-color: #007f91;
   cursor: pointer;
+  color: white;
+  font-size: 17px;
+  padding: 20px 13px;
+  border-radius: 3px;
+  border: none;
+  text-transform: uppercase;
 }
 
 button:hover {
-  background-color: #57a43b;
+  background-color: #77bcc4;
 }
 
 footer {

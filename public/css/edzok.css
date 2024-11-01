@@ -6,6 +6,7 @@
   text-decoration: none;
   list-style: none;
   box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
@@ -138,7 +139,7 @@ a:hover {
   }
   
   .coach-item:hover {
-    background-color: #007f91;
+    background-color: #77bcc4;
     color: white;
   }
   
