@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edzésterv Vásárlás</title>
+    <link rel="stylesheet" href="./css/programok.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <header>
+        <h1>Edzésterv Vásárlás</h1>
+    </header>
+    
+    <!-- Navigációs sáv -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Rólunk</a></li>
+            <li><a class="active" href="#home">Programok</a></li>
+            <li><a href="edzok.html">Edzők</a></li>   
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Elérhető Edzéstervek</h2>
+        <section id="plans">
+            <div class="plan" onclick="openModal('Fogyás Program', 'Ez a program segít a fogyásban és az állóképesség javításában.', 'checkout-button-fogyas')">
+                <h3>Fogyás Program</h3>
+            </div>
+            <div class="plan" onclick="openModal('Izomépítő Program', 'Fokozd az izmaid méretét és erejét ezzel a programmal.', 'checkout-button-izomepito')">
+                <h3>Izomépítő Program</h3>
+            </div>
+            <div class="plan" onclick="openModal('Állóképesség Fejlesztő Program', 'Növeld az állóképességedet ezzel az intenzív programmal.', 'checkout-button-allokepesseg')">
+                <h3>Állóképesség Fejlesztő Program</h3>
+            </div>
+        </section>
+
+        <!-- Felugró ablak -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3 id="modal-title"></h3>
+                <p id="modal-description"></p>
+                <button id="modal-purchase-button">Megvásárlás</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Edzésterv Vásárlás. Minden jog fenntartva.</p>
+    </footer>
+
+    <script src="./js/app.js"></script>
+</body>
+</html>
