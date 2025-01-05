@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const stripe = require('stripe')('sk_test_51PtWWNRsbWzuHhS7HgW7JE9tlvHePZaUoygd5qq0vG8I40ykxfrgQ76ONt54VrdaY1h58tlhbhkIVgd7l9r0CrHL00cpTojy9a'); // Add your Stripe Secret Key here
 
 const app = express();
-app.use(express.static('public')); // Serve the static HTML and CSS files
+app.use(express.static('public')); 
 app.use(bodyParser.json());
 
 function removeAccents(str) {
@@ -11,16 +11,16 @@ function removeAccents(str) {
 }
 
 const prices = {
-    'Fogyás Program': 500000, // 5000 HUF
-    'Izomépítő Program': 600000, // 6000 HUF
-    'Állóképesség Fejlesztő Program': 700000 // 7000 HUF
+    'Fogyás Program': 500000, 
+    'Izomépítő Program': 600000, 
+    'Állóképesség Fejlesztő Program': 700000 
 };
 
 app.post('/create-checkout-session', async (req, res) => {
     const { plan } = req.body;
 
     const sanitizedPlanName = removeAccents(plan);
-    const unitAmount = prices[plan]; // Az ár a megadott terv alapján
+    const unitAmount = prices[plan]; 
 
     if (!unitAmount) {
         return res.status(400).json({ error: 'Invalid plan name' });
@@ -43,7 +43,7 @@ app.post('/create-checkout-session', async (req, res) => {
             ],
             mode: 'payment',
             success_url: `http://localhost:3000/success?plan=${encodeURIComponent(plan)}`,
-            cancel_url: 'http://localhost:3000/cancel',
+            cancel_url: 'http://localhost:3000/',
         });
 
         res.json({ id: session.id });
@@ -62,21 +62,16 @@ app.get('/success', (req, res) => {
         'Állóképesség Fejlesztő Program': 'allokepesseg_program.pdf'
     };
 
-    // Ellenőrizzük, hogy a 'plan' létezik-e a pdfFiles objektumban
     const pdfFile = pdfFiles[plan];
     if (pdfFile) {
-        res.sendFile(__dirname + '/public/success.html', { headers: { 'Content-Disposition': `attachment; filename="${pdfFile}"` } });
+      res.download(__dirname + '/public/pdfs/' + pdfFile);
     } else {
-        res.status(404).send('PDF nem található');
+      res.status(404).send('PDF nem található');
     }
 });
 
-
-
-// Serve static files (CSS, JS, images, etc.)
 app.use(express.static('public'));
 
-// Coach data (could be stored in a database in a real app)
 const coaches = [
   {
     id: 1,
@@ -150,7 +145,6 @@ const coaches = [
   }
 ];
 
-// API route to get coach details by ID
 app.get('/coach/:id', (req, res) => {
   const coachId = parseInt(req.params.id);
   const coach = coaches.find(c => c.id === coachId);
@@ -159,11 +153,6 @@ app.get('/coach/:id', (req, res) => {
   } else {
     res.status(404).send('Coach not found');
   }
-});
-
-// Route to serve cancel.html
-app.get('/cancel', (req, res) => {
-    res.sendFile(__dirname + '/public/cancel.html');
 });
 
 
