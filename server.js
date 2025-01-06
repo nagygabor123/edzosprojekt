@@ -36,7 +36,7 @@ app.post('/create-checkout-session', async (req, res) => {
                         product_data: {
                             name: sanitizedPlanName,
                         },
-                        unit_amount: unitAmount, // Az ár a kiválasztott tervből
+                        unit_amount: unitAmount,
                     },
                     quantity: 1,
                 },
@@ -53,7 +53,6 @@ app.post('/create-checkout-session', async (req, res) => {
     }
 });
 
-
 app.get('/success', (req, res) => {
     const plan = req.query.plan;
     const pdfFiles = {
@@ -69,8 +68,6 @@ app.get('/success', (req, res) => {
       res.status(404).send('PDF nem található');
     }
 });
-
-app.use(express.static('public'));
 
 const coaches = [
   {
@@ -97,14 +94,14 @@ const coaches = [
   {
     id: 4,
     name: "titok1",
-    images: ["./img/teszt1.jpg", "./img/teszt2.jpg", "./img/teszt3.jpg"],
+    images: ["./img/teszt2.jpg", "./img/teszt2.jpg", "./img/teszt3.jpg"],
     info: "Mark Taylor is a strength and conditioning coach with expertise in weightlifting.",
     phone: "+192837465"
   },
   {
     id: 5,
     name: "Mark Taylor",
-    images: ["./img/teszt1.jpg", "./img/teszt2.jpg", "./img/teszt3.jpg"],
+    images: ["./img/teszt2.jpg", "./img/teszt2.jpg", "./img/teszt3.jpg"],
     info: "Mark Taylor is a strength and conditioning coach with expertise in weightlifting.",
     phone: "+192837465"
   },
@@ -145,16 +142,19 @@ const coaches = [
   }
 ];
 
-app.get('/coach/:id', (req, res) => {
-  const coachId = parseInt(req.params.id);
-  const coach = coaches.find(c => c.id === coachId);
-  if (coach) {
-    res.json(coach);
-  } else {
-    res.status(404).send('Coach not found');
-  }
+app.get('/coaches', (req, res) => {
+    res.json(coaches);
 });
 
+app.get('/coach/:id', (req, res) => {
+    const coachId = parseInt(req.params.id);
+    const coach = coaches.find(c => c.id === coachId);
+    if (coach) {
+        res.json(coach);
+    } else {
+        res.status(404).send('Coach not found');
+    }
+});
 
 app.listen(3000, () => {
     console.log('Server running on port localhost:3000');

@@ -25,47 +25,86 @@
   <section class="shop container">
     <h2 class="section-title">EDZŐK</h2>
     <div class="shop-content">
-      <!-- Box 1 -->
-      <div class="product-box">
-          <img src="/img/teszt1.jpg" alt="" class="product-img">
-          <h2 class="product-title">valami1</h2>
-      </div>
-      <!-- Box 2 -->
-      <div class="product-box">
-          <img src="/img/teszt2.jpg" alt="" class="product-img">
-          <h2 class="product-title">valami2</h2>
-      </div>
-      <!-- Box 3 -->
-      <div class="product-box">
-          <img src="/img/teszt3.jpg" alt="" class="product-img">
-          <h2 class="product-title">valami3</h2>
-      </div>
-      <!-- Box 4 -->
-      <div class="product-box">
-          <img src="/img/teszt1.jpg" alt="" class="product-img">
-          <h2 class="product-title">valami4</h2>
-      </div>
-      <!-- Box 5 -->
-      <div class="product-box">
-          <img src="/img/teszt2.jpg" alt="" class="product-img">
-          <h2 class="product-title">valami5</h2>
-      </div>
-      <!-- Box 6 -->
-      <div class="product-box">
-          <img src="/img/teszt3.jpg" alt="" class="product-img">
-          <h2 class="product-title">valami6</h2>
-      </div>
-      <!-- Box 7 -->
-      <div class="product-box">
-          <img src="/img/teszt1.jpg" alt="" class="product-img">
-          <h2 class="product-title">valami7</h2>
-      </div>
-      <!-- Box 8 -->
-      <div class="product-box">
-          <img src="/img/teszt2.jpg" alt="" class="product-img">
-          <h2 class="product-title">valami8</h2>
-      </div>
+      <!-- Dinamikusan generált edzők -->
     </div>
   </section>
+
+  <!-- Modális ablak -->
+  <div id="coachModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <div class="modal-header">
+        <h2 id="coachName"></h2>
+      </div>
+      <div class="modal-body">
+        <div class="modal-images" id="coachImages"></div>
+        <p id="coachInfo"></p>
+        <p><strong>Telefon:</strong> <span id="coachPhone"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function loadCoaches() {
+      try {
+        const response = await fetch('/coaches');
+        const coaches = await response.json();
+    
+        const shopContent = document.querySelector('.shop-content');
+        shopContent.innerHTML = ''; // Törli az alapértelmezett HTML-t
+    
+        coaches.forEach(coach => {
+          const productBox = document.createElement('div');
+          productBox.classList.add('product-box');
+          productBox.innerHTML = `
+            <img src="${coach.images[0]}" alt="${coach.name}" class="product-img">
+            <h2 class="product-title">${coach.name}</h2>
+          `;
+    
+          productBox.addEventListener('click', () => showCoachDetails(coach));
+    
+          shopContent.appendChild(productBox);
+        });
+      } catch (error) {
+        console.error('Error loading coaches:', error);
+      }
+    }
+    
+    function showCoachDetails(coach) {
+  const modal = document.getElementById('coachModal');
+  document.getElementById('coachName').innerText = coach.name;
+  document.getElementById('coachInfo').innerText = coach.info;
+  document.getElementById('coachPhone').innerText = coach.phone;
+
+  const imagesContainer = document.getElementById('coachImages');
+  imagesContainer.innerHTML = ''; // Törli az előző képeket
+  coach.images.forEach(image => {
+    const img = document.createElement('img');
+    img.src = image;
+    imagesContainer.appendChild(img);
+  });
+
+  modal.style.display = 'block'; // Megjeleníti a modált
+  document.body.classList.add('modal-open'); // Blokkolja a háttér eseményeit
+
+  const closeButton = document.querySelector('.close-button');
+  closeButton.onclick = () => closeModal();
+
+  window.onclick = event => {
+    if (event.target === modal) {
+      closeModal(); // Bezárja a modált, ha a háttérre kattint
+    }
+  };
+}
+
+function closeModal() {
+  const modal = document.getElementById('coachModal');
+  modal.style.display = 'none'; // Elrejti a modált
+  document.body.classList.remove('modal-open'); // Engedélyezi a háttér eseményeit
+}
+
+    
+    window.onload = loadCoaches;
+  </script>  
 </body>
 </html>
