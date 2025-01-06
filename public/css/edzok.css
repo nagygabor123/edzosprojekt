@@ -85,21 +85,19 @@ a:hover {
 }
 .product-box{
     position: relative;
-    background-color: #2d2e37;
+    background-color: #f3e1e1;
     padding: 10px;
     border-radius: 5px;
-    /* transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1); */
+     transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1); 
 }
 .product-box:hover{
-    background: var(--bg-color);
+    background: #77bcc4;
+    color: white;
     border: 1px solid #f0f0f0;
-    box-shadow: 0 8px 32px hsla(01.075, 0.82, 0.165, 1);
+    
     transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
-.product-box:hover .product-title,
-.product-box:hover .price{
-    color: #141414;
-}
+
 .product-img{
     width: 100%;
     height: auto;
@@ -117,8 +115,6 @@ a:hover {
 
 
 /* Modális ablak stílusai */
-
-/* Modal megnyitáskor az egér események blokkolása */
 body.modal-open {
   overflow: hidden; /* Tiltja a görgetést */
   pointer-events: none; /* Tiltja az egér eseményeket */
@@ -128,64 +124,85 @@ body.modal-open .modal {
   pointer-events: auto; /* A modális ablakban engedélyezi az egér eseményeket */
 }
 
-
+/* Modal stílusok */
 .modal {
-  display: none; /* Alapértelmezés szerint rejtett */
-  position: fixed;
-  z-index: 1000;
+  display: none; /* Kezdetben elrejtve */
+  position: fixed; 
+  z-index: 1000; 
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden; 
+  background-color: rgba(0, 0, 0, 0.8); /* Átlátszó háttér */
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 10% auto;
+  position: absolute; /* Fontos! */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Középre igazítás */
+  background: #fff;
   padding: 20px;
-  border: 1px solid #888;
-  width: 50%;
   border-radius: 10px;
-  text-align: center;
+  width: 80%;
+  max-width: 800px;
+  height: 70%;
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+
+.modal img {
+  width: 600px;
+  height: 600px;
+  border-radius: 10px; /* Lekerekített sarkak */
 }
 
-.close-button:hover,
-.close-button:focus {
-  color: black;
-  text-decoration: none;
+.modal .close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 50px;
   cursor: pointer;
+  color: #333;
 }
 
-.modal-header h2 {
-  margin-bottom: 20px;
+/* Nyilak stílusai */
+.modal .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 36px;
+  color: #333;
+  cursor: pointer;
+  user-select: none;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.modal-body {
-  text-align: left;
+.modal .arrow.left {
+  left: 10px;
 }
 
-.modal-images img {
-  width: 100px;
-  height: auto;
-  margin: 5px;
-  display: inline-block;
-  border-radius: 5px;
+.modal .arrow.right {
+  right: 10px;
 }
 
-.modal-body p {
-  margin-top: 10px;
+.arrow:hover{
+  color: black;
+  font-size: 66px;
 }
 
-
+.close-button:hover{
+  color: black;
+}
 
 
 

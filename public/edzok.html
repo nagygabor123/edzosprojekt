@@ -33,78 +33,91 @@
   <div id="coachModal" class="modal">
     <div class="modal-content">
       <span class="close-button">&times;</span>
-      <div class="modal-header">
-        <h2 id="coachName"></h2>
-      </div>
-      <div class="modal-body">
-        <div class="modal-images" id="coachImages"></div>
-        <p id="coachInfo"></p>
-        <p><strong>Telefon:</strong> <span id="coachPhone"></span></p>
-      </div>
+      <img id="coachMainImage" src="" alt="Coach Image">
+      <h2 id="coachName"></h2>
+      <p id="coachInfo"></p>
+      <p><strong>Telefon:</strong> <span id="coachPhone"></span></p>
+      <div class="arrow left" id="prevImage">&#8249;</div>
+      <div class="arrow right" id="nextImage">&#8250;</div>
     </div>
   </div>
 
+  
   <script>
     async function loadCoaches() {
-      try {
-        const response = await fetch('/coaches');
-        const coaches = await response.json();
-    
-        const shopContent = document.querySelector('.shop-content');
-        shopContent.innerHTML = ''; // Törli az alapértelmezett HTML-t
-    
-        coaches.forEach(coach => {
-          const productBox = document.createElement('div');
-          productBox.classList.add('product-box');
-          productBox.innerHTML = `
-            <img src="${coach.images[0]}" alt="${coach.name}" class="product-img">
-            <h2 class="product-title">${coach.name}</h2>
-          `;
-    
-          productBox.addEventListener('click', () => showCoachDetails(coach));
-    
-          shopContent.appendChild(productBox);
-        });
-      } catch (error) {
-        console.error('Error loading coaches:', error);
+    try {
+      const response = await fetch('/coaches');
+      const coaches = await response.json();
+
+      const shopContent = document.querySelector('.shop-content');
+      shopContent.innerHTML = ''; // Törli az alapértelmezett HTML-t
+
+      coaches.forEach(coach => {
+        const productBox = document.createElement('div');
+        productBox.classList.add('product-box');
+        productBox.innerHTML = `
+          <img src="${coach.images[0]}" alt="${coach.name}" class="product-img">
+          <h2 class="product-title">${coach.name}</h2>
+        `;
+
+        productBox.addEventListener('click', () => showCoachDetails(coach));
+
+        shopContent.appendChild(productBox);
+      });
+    } catch (error) {
+      console.error('Error loading coaches:', error);
+    }
+  }
+
+  let currentImageIndex = 0;
+
+  function showCoachDetails(coach) {
+    const modal = document.getElementById('coachModal');
+    const coachMainImage = document.getElementById('coachMainImage');
+    document.getElementById('coachName').innerText = coach.name;
+    document.getElementById('coachInfo').innerText = coach.info;
+    document.getElementById('coachPhone').innerText = coach.phone;
+
+    const images = coach.images;
+    currentImageIndex = 0;
+    coachMainImage.src = images[currentImageIndex];
+
+    modal.style.display = 'block';  // A modal ablak megjelenítése
+    document.body.classList.add('modal-open');  // A görgetés tiltása
+
+    // Bezárás logika
+    const closeButton = document.querySelector('.close-button');
+    closeButton.onclick = () => closeModal();
+
+    const prevImageButton = document.getElementById('prevImage');
+    const nextImageButton = document.getElementById('nextImage');
+
+    prevImageButton.onclick = () => {
+      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+      coachMainImage.src = images[currentImageIndex];
+    };
+
+    nextImageButton.onclick = () => {
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      coachMainImage.src = images[currentImageIndex];
+    };
+
+    window.onclick = event => {
+      if (event.target === modal) {
+        closeModal();
       }
-    }
-    
-    function showCoachDetails(coach) {
-  const modal = document.getElementById('coachModal');
-  document.getElementById('coachName').innerText = coach.name;
-  document.getElementById('coachInfo').innerText = coach.info;
-  document.getElementById('coachPhone').innerText = coach.phone;
+    };
+  }
 
-  const imagesContainer = document.getElementById('coachImages');
-  imagesContainer.innerHTML = ''; // Törli az előző képeket
-  coach.images.forEach(image => {
-    const img = document.createElement('img');
-    img.src = image;
-    imagesContainer.appendChild(img);
-  });
+  function closeModal() {
+    const modal = document.getElementById('coachModal');
+    modal.style.display = 'none';  // A modal ablak elrejtése
+    document.body.classList.remove('modal-open');  // A görgetés engedélyezése
+  }
 
-  modal.style.display = 'block'; // Megjeleníti a modált
-  document.body.classList.add('modal-open'); // Blokkolja a háttér eseményeit
 
-  const closeButton = document.querySelector('.close-button');
-  closeButton.onclick = () => closeModal();
+  window.onload = loadCoaches;
 
-  window.onclick = event => {
-    if (event.target === modal) {
-      closeModal(); // Bezárja a modált, ha a háttérre kattint
-    }
-  };
-}
-
-function closeModal() {
-  const modal = document.getElementById('coachModal');
-  modal.style.display = 'none'; // Elrejti a modált
-  document.body.classList.remove('modal-open'); // Engedélyezi a háttér eseményeit
-}
-
-    
-    window.onload = loadCoaches;
   </script>  
 </body>
 </html>
